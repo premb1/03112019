@@ -1,0 +1,82 @@
+
+
+qn:  Can we use getText in select class?
+Ans:  Yes
+Exp pgm:
+Select select = new Select(driver.findElement(By.xpath("//select")));
+WebElement option = select.getFirstSelectedOption();
+String defaultItem = option.getText();
+System.out.println(defaultItem );
+
+qn: Build().Perform() in Action class?
+Ans:
+Actions builder = new Actions(driver); 
+builder.clickAndHold(element1)
+.clickAndHold(element2)
+.click()
+.build()
+.perform();
+
+in the above code we are performing more than one operations so we have to use build() to compile all the actions into a single step. 
+Thus build() method is used compile all the listed actions into a single step. 
+We use build() when we are performing sequence of operations and no need to use if we are performing single action.
+
+	perform()
+A convenience method for performing the actions without calling build() first.
+	build()
+Generates a composite action containing all actions so far, 
+ready to be performed (and resets the internal builder state, so subsequent calls to build() will contain fresh sequences).
+
+qn: pgm to remove special character?
+
+public class RemoveSpclChar {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s="Test@!@#4";
+		char[] ss=s.toCharArray();
+		String d="";
+		int j=0;
+		for(int i=0;i<s.length();i++)
+		{
+			if((ss[i] >='A' && ss[i] <='Z')||(ss[i]>='a' && ss[i]<='z'))
+			{
+				d=d+ss[j];
+				j++;
+			}
+			
+		}
+		System.out.println(d);
+		
+	}
+
+}
+o/p: Test
+
+RuntimeException vs Checked Exception in Java
+Java Exceptions are divided in two categories RuntimeException also known as unchecked Exception and checked Exception. Main difference between RuntimeException and checked Exception is that, 
+It is mandatory to provide try catch or try finally block to handle checked Exception and failure to do so will result in compile time error, while in case of RuntimeException this is not mandatory.
+ Any Exception which is subclass of RuntimeException are called unchecked and mandatory exception handling is not requirement for them.
+
+Some of the most common Exception like NullPointerException, ArrayIndexOutOfBoundException are unchecked and they are descended from java.lang.RuntimeException.
+ Popular example of checked Exceptions are ClassNotFoundException and IOException and that's the reason you need to provide a try catch finally block while performing file operations in Java as many of them throws IOException.
+
+ 
+  Why string is immutable?
+Ans:Sting is final class so its immutable.
+
+ Difference between implicit wait and explicit wait?
+A:Implicit wait will wait for given timeunit, if it find the element before the time mentioned
+it will continue the execution and it is used by findByElement method.
+Explicit wait also known as intelligent wait will wait for perticular condition wait
+eg WebDriverWait wait = new WebDriverWait(driver, 10);
+      wait.until(ExpectedConditions.titleContains("bambooinvoice"));
+
+what are the types of assertion
+A: Asset & SoftAssert
+    Assert will stop the execution immideatly after fail.
+    SoftAssert
+    SoftAssert will not stop execution after fail till it finds asserAll()
+    Eg: SoftAssert sa = new SoftAssert()
+          sa.assertEquals("abc","xyz")
+          sa.assertAll();
